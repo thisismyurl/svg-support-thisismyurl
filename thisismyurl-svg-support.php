@@ -5,7 +5,7 @@
  * Plugin Name: SVG Support by thisismyurl.com
  * Plugin URI:  https://thisismyurl.com/thisismyurl-svg-support/
  * Donate link: https://thisismyurl.com/donate/
- * Description: An educational plugin to safely enable SVG uploads and management in the Media Library.
+ * Description: Safely enable SVG uploads and management in the WordPress Media Library.
  * Version:     1.251229
  * Requires at least: 6.0
  * Requires PHP: 7.4
