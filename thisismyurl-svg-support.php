@@ -1,14 +1,21 @@
 <?php
 /**
- * Plugin Name: SVG Support by thisismyurl.com
- * Plugin URI:  https://thisismyurl.com/
- * Description: An educational plugin to safely enable SVG uploads and management in the Media Library.
- * Version:     1.251229
  * Author:      Christopher Ross
  * Author URI:  https://thisismyurl.com/
+ * Plugin Name: SVG Support by thisismyurl.com
+ * Plugin URI:  https://thisismyurl.com/thisismyurl-svg-support/
+ * Donate link: https://thisismyurl.com/donate/
+ * Description: An educational plugin to safely enable SVG uploads and management in the Media Library.
+ * Version:     1.251229
+ * Requires at least: 6.0
+ * Requires PHP: 7.4
+ * Update URI: https://github.com/thisismyurl/thisismyurl-svg-support
+ * GitHub Plugin URI: https://github.com/thisismyurl/thisismyurl-svg-support
+ * Primary Branch: main
+ * 
  * Text Domain: thisismyurl-svg-support
  * License:     GPL2
- * Donate link: https://thisismyurl.com/donate/
+ * 
  * 
  * * @package TIMU_SVG_Support
  */
