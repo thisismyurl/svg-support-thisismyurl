@@ -2,6 +2,9 @@
 /**
  * GitHub Plugin Updater
  * * Handles the background updates for GitHub-hosted plugins.
+ * 
+ * Updated: 1.251229
+ * 
  */
 
 if ( ! class_exists( 'FWO_GitHub_Updater' ) ) {
@@ -84,3 +87,4 @@ if ( ! class_exists( 'FWO_GitHub_Updater' ) ) {
         }
     }
 }
+
