@@ -6,7 +6,7 @@
  * Plugin URI:  https://thisismyurl.com/thisismyurl-svg-support/
  * Donate link: https://thisismyurl.com/donate/
  * Description: Safely enable SVG uploads and management in the WordPress Media Library.
- * Version:     1.251229
+ * Version:     1.251230
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Update URI: https://github.com/thisismyurl/thisismyurl-svg-support
@@ -31,7 +31,7 @@ class TIMU_SVG_Support {
 		add_filter( 'upload_mimes', array( $this, 'add_svg_mime_types' ) );
 		add_action( 'admin_head', array( $this, 'fix_svg_media_library_display' ) );
 		add_action( 'admin_init', array( $this, 'register_svg_settings' ) );
-		add_action( 'admin_menu', array( $this, 'create_svg_tools_page' ) );
+		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'add_plugin_action_links' ) );
 
 		// Hook to set defaults only when the plugin is first activated.
@@ -97,7 +97,8 @@ class TIMU_SVG_Support {
 		return $new_input;
 	}
 
-	public function create_svg_tools_page() {
+	public function add_admin_menu() {
+
 		add_management_page(
 			__( 'SVG Support Settings', 'thisismyurl-svg-support' ),
 			__( 'SVG Support', 'thisismyurl-svg-support' ),
