@@ -42,17 +42,12 @@ While this plugin enables the upload of SVG files, it is recommended that only t
 = Will this slow down my site? =
 No. The plugin uses minimal hooks and only runs the CSS "fix" within the administrative dashboard, ensuring zero impact on your front-end global authority or conversion rates.
 
-== Screenshots ==
 
-1. The SVG Support settings page located under the Tools menu.
-2. SVGs rendering correctly in the WordPress Media Library grid view.
 
 == Changelog ==
 
-= 1.251230 =
-* Improved state management to ensure the "Active by Default" logic doesn't overwrite user-saved preferences.
-
 = 1.251229 =
+* Improved state management to ensure the "Active by Default" logic doesn't overwrite user-saved preferences.
 * Initial release with metabox-holder administrative UI.
 * Added support for automated GitHub updates.
 * Implemented register_activation_hook for default settings.
