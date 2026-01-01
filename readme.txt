@@ -52,6 +52,9 @@ It is a shared library used across our plugins to provide a consistent UI, unifi
 1. The modernized SVG Configuration dashboard featuring the TIMU Switch toggle.
 
 == Changelog ==
+n
+= 1.260101 =
+* Updated core library to version 1.260101
 
 = 1.260101 =
 * **Architectural Overhaul:** Now extends the **TIMU Core Library** for standardized settings and UI management.

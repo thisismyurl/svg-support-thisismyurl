@@ -6,7 +6,7 @@
  * Plugin URI:  https://thisismyurl.com/thisismyurl-svg-support/
  * Donate link: https://thisismyurl.com/donate/
  * Description: Safely enable SVG uploads and management in the WordPress Media Library utilizing the TIMU Core Library.
- * Version:     1.260101
+ * Version: 1.260101
  * Requires at least: 5.3
  * Requires PHP: 7.4
  * Tags: svg, uploads, media library
