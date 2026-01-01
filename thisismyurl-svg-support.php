@@ -5,92 +5,77 @@
  * Plugin Name: SVG Support by thisismyurl.com
  * Plugin URI:  https://thisismyurl.com/thisismyurl-svg-support/
  * Donate link: https://thisismyurl.com/donate/
- * Description: Safely enable SVG uploads and management in the WordPress Media Library.
- * Version:     1.251230
- * Requires at least: 6.0
+ * Description: Safely enable SVG uploads and management in the WordPress Media Library utilizing the TIMU Core Library.
+ * Version:     1.260101
+ * Requires at least: 5.3
  * Requires PHP: 7.4
+ * Tags: svg, uploads, media library
  * Update URI: https://github.com/thisismyurl/thisismyurl-svg-support
  * GitHub Plugin URI: https://github.com/thisismyurl/thisismyurl-svg-support
  * Primary Branch: main
- * * Text Domain: thisismyurl-svg-support
+ * Text Domain: thisismyurl-svg-support
  * License:     GPL2
- * * @package TIMU_SVG_Support
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * 
+ * 
+ * @package TIMU_SVG_Support
+ * 
+ * 
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
- * Prevent direct access to the file for security.
+ * Version-aware Core Loader
  */
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+function timu_svg_support_load_core() {
+    $core_path = plugin_dir_path( __FILE__ ) . 'core/class-timu-core.php';
+    if ( ! class_exists( 'TIMU_Core_v1' ) ) {
+        require_once $core_path;
+    }
 }
+timu_svg_support_load_core();
 
-/**
- * Class TIMU_SVG_Support
- * * Main class to handle SVG mime types, admin UI, and Media Library display fixes.
- */
-class TIMU_SVG_Support {
+class TIMU_SVG_Support extends TIMU_Core_v1 {
 
     /**
-     * Constructor: Initializes WordPress hooks and filters.
+     * Constructor: Initializes Core and SVG specific hooks.
      */
     public function __construct() {
+        parent::__construct( 
+            'thisismyurl-svg-support', 
+            plugin_dir_url( __FILE__ ), 
+            'timu_svg_settings_group', 
+            '', 
+            'thisismyurl-svg-support' 
+        );
 
-        // Hook into the upload mimes filter to allow SVG files.
         add_filter( 'upload_mimes', array( $this, 'add_svg_mime_types' ) );
-        
-        // Add CSS to the admin head to fix SVG rendering in the Media Library.
-        add_action( 'admin_head', array( $this, 'fix_svg_media_library_display' ) );
-        
-        // Register plugin settings in the database.
-        add_action( 'admin_init', array( $this, 'register_svg_settings' ) );
-        
-        // Add the settings page to the WordPress admin menu.
-        add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
-        
-        // Add custom action links (Settings, Donate) to the Plugins page.
-        add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'add_plugin_action_links' ) );
+        add_action( 'admin_head',   array( $this, 'fix_svg_media_library_display' ) );
+        add_action( 'admin_menu',   array( $this, 'add_admin_menu' ) );
 
-        // Hook to set defaults only when the plugin is first activated.
+        // Hook to set defaults upon activation
         register_activation_hook( __FILE__, array( $this, 'activate_plugin_defaults' ) );
     }
 
     /**
      * Activate Plugin Defaults:
-     * This only runs ONCE when the plugin is activated.
+     * Sets 'enabled' to 1 by default upon activation.
      */
     public function activate_plugin_defaults() {
-        // Only set the default if the option doesn't exist at all.
-        if ( false === get_option( 'timu_svg_options' ) ) {
-            update_option( 'timu_svg_options', array( 'enabled' => 1 ) );
+        // Use the namespaced option key derived from the plugin slug
+        $option_name = $this->plugin_slug . '_options';
+        if ( false === get_option( $option_name ) ) {
+            update_option( $option_name, array( 'enabled' => 1 ) );
         }
     }
 
     /**
-     * Adds custom links (Settings, Donate) to the plugin's row on the Plugins page.
-     * * @param array $links Existing action links.
-     * @return array Merged action links.
-     */
-    public function add_plugin_action_links( $links ) {
-        $custom_links = array(
-            '<a href="' . admin_url( 'tools.php?page=thisismyurl-svg-support' ) . '">' . esc_html__( 'Settings', 'thisismyurl-svg-support' ) . '</a>',
-            '<a href="https://thisismyurl.com/donate/" target="_blank" style="color: #2271b1; font-weight: bold;">' . esc_html__( 'Donate', 'thisismyurl-svg-support' ) . '</a>',
-        );
-        return array_merge( $custom_links, $links );
-    }
-
-    /**
-     * Filters the list of allowed mime types to include SVG and SVGZ.
-     * * @param array $mimes Existing allowed mime types.
-     * @return array Modified list of allowed mime types.
+     * Filters allowed mime types to include SVG.
      */
     public function add_svg_mime_types( $mimes ) {
-        $options = get_option( 'timu_svg_options' );
-
-        // We check if 'enabled' is exactly 1. 
-        // If the option is missing (rare), we treat it as 0 to avoid "forcing" it on.
-        $is_enabled = isset( $options['enabled'] ) && 1 == $options['enabled'];
-
-        if ( $is_enabled ) {
+        // Retrieve the option using the core helper
+        if ( 1 == $this->get_plugin_option( 'enabled', 1 ) ) {
             $mimes['svg']  = 'image/svg+xml';
             $mimes['svgz'] = 'image/svg+xml';
         }
@@ -98,7 +83,7 @@ class TIMU_SVG_Support {
     }
 
     /**
-     * Injects CSS into the WordPress admin head to ensure SVG images scale correctly in the Media Library.
+     * Fixes SVG rendering in the Media Library.
      */
     public function fix_svg_media_library_display() {
         echo '<style>
@@ -110,128 +95,71 @@ class TIMU_SVG_Support {
     }
 
     /**
-     * Registers the SVG support settings using the WordPress Settings API.
-     */
-    public function register_svg_settings() {
-        register_setting( 
-            'timu_svg_settings_group', 
-            'timu_svg_options', 
-            array(
-                'sanitize_callback' => array( $this, 'sanitize_svg_options' ),
-            )
-        );
-    }
-
-    /**
-     * Sanitizes the settings input. Converts the "enabled" checkbox to a binary value.
-     * * @param array $input The raw settings input from the form.
-     * @return array The sanitized settings array.
-     */
-    public function sanitize_svg_options( $input ) {
-        $new_input = array();
-        // If the checkbox is unchecked, it won't be in the $_POST at all.
-        $new_input['enabled'] = isset( $input['enabled'] ) ? 1 : 0;
-        return $new_input;
-    }
-
-    /**
-     * Adds the SVG Support settings page under the "Tools" menu.
+     * Adds the menu page under Tools.
      */
     public function add_admin_menu() {
-
         add_management_page(
             __( 'SVG Support Settings', 'thisismyurl-svg-support' ),
             __( 'SVG Support', 'thisismyurl-svg-support' ),
             'manage_options',
-            'thisismyurl-svg-support',
-            array( $this, 'render_svg_admin_ui' )
+            $this->plugin_slug,
+            array( $this, 'render_ui' )
         );
     }
 
     /**
-     * Renders the HTML for the plugin settings page.
+     * Renders the Settings Interface.
      */
-    public function render_svg_admin_ui() {
-        // Security check: Ensure only authorized users can view this page.
-        if ( ! current_user_can( 'manage_options' ) ) {
-            return;
-        }
+    public function render_ui() {
+        if ( ! current_user_can( 'manage_options' ) ) return;
 
-        $options = get_option( 'timu_svg_options' );
-        // Ensure we have a default for the UI if it's never been saved.
-        $current_val = isset( $options['enabled'] ) ? $options['enabled'] : 0;
+        $sidebar_extra = '';
+
+        // Default to 1 if the option is not yet set
+        $current_val = $this->get_plugin_option( 'enabled', 1 ); 
         ?>
-        <div class="wrap">
-            <h1>
-                <?php esc_html_e( 'SVG Support', 'thisismyurl-svg-support' ); ?>
-                <span style="font-size: 0.5em; font-weight: normal; vertical-align: middle; margin-left: 10px; color: #646970;">
-                    <?php printf( 
-                        esc_html__( 'by %s', 'thisismyurl-svg-support' ), 
-                        '<a href="https://thisismyurl.com/" target="_blank" style="text-decoration: none; color: inherit;">thisismyurl.com</a>' 
-                    ); ?>
-                </span>
-            </h1>
-            
-            <div id="poststuff">
-                <div id="post-body" class="metabox-holder columns-2">
-                    <div id="post-body-content">
-                        <div class="postbox">
-                            <div class="inside">
-                                <form method="post" action="options.php">
-                                    <?php settings_fields( 'timu_svg_settings_group' ); ?>
+        <div class="wrap timu-admin-wrap">
+            <?php $this->render_core_header(); ?>
+
+            <form method="post" action="options.php">
+                <?php settings_fields( $this->options_group ); ?>
+                
+                <div id="poststuff">
+                    <div id="post-body" class="metabox-holder columns-2">
+                        
+                        <div id="post-body-content">
+                            <div class="timu-card">
+                                <div class="timu-card-header"><?php esc_html_e( 'SVG Configuration', 'thisismyurl-svg-support' ); ?></div>
+                                <div class="timu-card-body">
                                     <table class="form-table">
                                         <tr>
                                             <th scope="row"><?php esc_html_e( 'Enable SVG Uploads', 'thisismyurl-svg-support' ); ?></th>
                                             <td>
-                                                <input type="checkbox" id="timu_svg_enabled" name="timu_svg_options[enabled]" value="1" <?php checked( 1, $current_val ); ?> />
-                                                <label for="timu_svg_enabled"><?php esc_html_e( 'Allow .svg files to be uploaded to the Media Library.', 'thisismyurl-svg-support' ); ?></label>
+                                                <label class="timu-switch">
+                                                    <input type="checkbox" name="<?php echo esc_attr($this->plugin_slug); ?>_options[enabled]" value="1" <?php checked( 1, $current_val ); ?> />
+                                                    <span class="timu-slider"></span>
+                                                </label>
+                                                <p class="description"><?php esc_html_e( 'Allow .svg files to be uploaded to the Media Library.', 'thisismyurl-svg-support' ); ?></p>
                                             </td>
                                         </tr>
                                     </table>
-                                    <?php submit_button( __( 'Save SVG Settings', 'thisismyurl-svg-support' ) ); ?>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div id="postbox-container-1" class="postbox-container">
-                        <div class="postbox">
-                            <h2 class="hndle"><span><?php esc_html_e( 'Documentation', 'thisismyurl-svg-support' ); ?></span></h2>
-                            <div class="inside">
-                                <p><?php esc_html_e( 'SVG files are XML-based. This plugin enables these files while ensuring thumbnails appear in the dashboard.', 'thisismyurl-svg-support' ); ?></p>
-                                <hr />
-                                <p><a href="https://thisismyurl.com/donate/" class="button button-secondary" target="_blank"><?php esc_html_e( 'Donate to Development', 'thisismyurl-svg-support' ); ?></a></p>
-                            </div>
+                            <?php $this->render_registration_field(); ?>
+                            <?php submit_button( __( 'Save SVG Settings', 'thisismyurl-svg-support' ), 'primary large' ); ?>
                         </div>
+
+                        <?php $this->render_core_sidebar( $sidebar_extra ); ?>
+
                     </div>
                 </div>
-            </div>
+            </form>
+            
+            <?php $this->render_core_footer(); ?>
         </div>
         <?php
     }
 }
 
-/**
- * Instantiate the class to register the hooks.
- */
 new TIMU_SVG_Support();
-
-/**
- * Handle Plugin Updates via GitHub.
- * Loads the updater logic once all plugins have been loaded.
- */
-add_action( 'plugins_loaded', function() {
-    $updater_path = plugin_dir_path( __FILE__ ) . 'updater.php';
-    if ( file_exists( $updater_path ) ) {
-        require_once $updater_path;
-        if ( class_exists( 'FWO_GitHub_Updater' ) ) {
-            new FWO_GitHub_Updater( array(
-                'slug'               => 'thisismyurl-svg-support',
-                'proper_folder_name' => 'thisismyurl-svg-support',
-                'api_url'            => 'https://api.github.com/repos/thisismyurl/thisismyurl-svg-support/releases/latest',
-                'github_url'         => 'https://github.com/thisismyurl/thisismyurl-svg-support',
-                'plugin_file'        => __FILE__,
-            ) );
-        }
-    }
-});
