@@ -55,6 +55,9 @@ It is a shared library used across our plugins to provide a consistent UI, unifi
 n
 = 1.260101 =
 * Updated core library to version 1.260101
+n
+= 1.260101 =
+* Updated core library to version 1.260101
 
 = 1.260101 =
 * **Architectural Overhaul:** Now extends the **TIMU Core Library** for standardized settings and UI management.
