@@ -34,9 +34,6 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             add_action( 'wp_ajax_timu_install_tool', array( $this, 'ajax_install_plugin' ) );
         }
 
-        /**
-         * Initialize WordPress Filesystem API
-         */
         public function init_fs() {
             global $wp_filesystem;
             if ( empty( $wp_filesystem ) ) {
@@ -58,9 +55,6 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             return $input;
         }
 
-        /**
-         * MUST BE PUBLIC: Used as a callback for WP_AJAX
-         */
         public function ajax_install_plugin() {
             check_ajax_referer( 'timu_install_nonce', 'nonce' );
             if ( ! current_user_can( 'install_plugins' ) ) {
@@ -177,7 +171,6 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
          */
         public function add_plugin_action_links( $links ) {
             $is_valid = $this->is_licensed();
-            // Automatically detects if the link should go to Settings or Tools
             $settings_url = admin_url( $this->menu_parent . '?page=' . $this->plugin_slug );
             $action_links[] = '<a href="' . esc_url( $settings_url ) . '">' . __( 'Settings', 'timu' ) . '</a>';
 
@@ -199,7 +192,6 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             register_setting( $this->options_group, $this->plugin_slug . '_options', array( 'sanitize_callback' => array( $this, 'sanitize_core_options' ) ) );
         }
 
-
         public function enqueue_core_assets( $hook ) {
             if ( strpos( $hook, $this->plugin_slug ) === false ) return;
             wp_enqueue_media();
@@ -213,9 +205,6 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             ) );
         }
 
-        /**
-         * Render Registration as a standard TIMU Card
-         */
         protected function render_registration_field() {
             $key      = $this->get_plugin_option( 'registration_key', '' );
             $is_valid = $this->is_licensed();
@@ -228,21 +217,10 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
                         <tr>
                             <th scope="row"><?php esc_html_e( 'Registration Key', 'timu' ); ?></th>
                             <td>
-                                <input type="text" 
-                                    name="<?php echo esc_attr($this->plugin_slug); ?>_options[registration_key]" 
-                                    value="<?php echo esc_attr( $key ); ?>" 
-                                    class="regular-text" 
-                                    style="font-family: monospace;">
-                                
+                                <input type="text" name="<?php echo esc_attr($this->plugin_slug); ?>_options[registration_key]" value="<?php echo esc_attr( $key ); ?>" class="regular-text" style="font-family: monospace;">
                                 <p class="description" style="margin-top: 8px;">
-                                    <?php 
-                                    printf( 
-                                        esc_html__( 'Enter your key from %s to unlock developer support.', 'timu' ), 
-                                        '<a href="https://thisismyurl.com" target="_blank">thisismyurl.com</a>' 
-                                    ); 
-                                    ?>
+                                    <?php printf( esc_html__( 'Enter your key from %s to unlock developer support.', 'timu' ), '<a href="https://thisismyurl.com" target="_blank">thisismyurl.com</a>' ); ?>
                                 </p>
-
                                 <?php if ( ! empty( $key ) ) : ?>
                                     <p class="description" style="color: <?php echo esc_attr($status_color); ?>; font-weight: 600; margin-top: 8px;">
                                         <?php echo esc_html__( 'Status:', 'timu' ) . ' ' . esc_html( $this->license_message ); ?>
@@ -257,11 +235,10 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
         }
 
         protected function render_core_header() {
-            $fs = $this->init_fs(); // Access the filesystem
+            $fs = $this->init_fs();
             $icon_rel = 'assets/icon.png';
             $icon_path = WP_PLUGIN_DIR . '/' . $this->plugin_slug . '/' . $icon_rel;
             
-            // Check if the icon exists physically; if not, use the provided icon URL or a default
             if ( ! empty( $this->plugin_icon ) ) {
                 $icon_url = $this->plugin_icon;
             } elseif ( $fs->exists( $icon_path ) ) {
@@ -285,33 +262,24 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             <?php
         }
 
-        /**
-         * Render Sidebar with Banner Existence Check
-         */
         protected function render_core_sidebar( $extra_content = '' ) {
-            $fs = $this->init_fs(); // Access the filesystem
+            $fs = $this->init_fs();
             $tools = $this->fetch_other_tools();
-            
             $banner_rel = 'assets/banner.png';
             $banner_path = WP_PLUGIN_DIR . '/' . $this->plugin_slug . '/' . $banner_rel;
             $banner_url = $this->plugin_url . $banner_rel;
             ?>
             <div id="postbox-container-1" class="postbox-container timu-marketing-sidebar" style="width: 280px; float: right; margin-left: 20px;">
-                
                 <?php if ( $fs->exists( $banner_path ) ) : ?>
                     <div class="postbox">
                         <img src="<?php echo esc_url($banner_url); ?>" style="width:100%; height:auto; display:block;">
                         <?php if ( ! empty( $extra_content ) ) : ?>
-                            <div class="inside">
-                                <?php echo wp_kses_post( $extra_content ); ?>
-                            </div>
+                            <div class="inside"><?php echo wp_kses_post( $extra_content ); ?></div>
                         <?php endif; ?>
                     </div>
                 <?php elseif ( ! empty( $extra_content ) ) : ?>
                     <div class="postbox">
-                        <div class="inside">
-                            <?php echo wp_kses_post( $extra_content ); ?>
-                        </div>
+                        <div class="inside"><?php echo wp_kses_post( $extra_content ); ?></div>
                     </div>
                 <?php endif; ?>
 
@@ -329,25 +297,15 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
                                 <img src="<?php echo esc_url($tool['icon'] ?: $this->plugin_url . 'core/assets/default-icon.png'); ?>" alt="<?php echo esc_attr($tool['name']); ?>">
                                 <div>
                                     <h4 style="margin-bottom:2px;"><?php echo esc_html($tool['name']); ?></h4>
-                                    <?php if ( ! empty($tool['excerpt']) ) : ?>
-                                        <p><?php echo esc_html($tool['excerpt']); ?></p>
-                                    <?php endif; ?>
-                                    
+                                    <?php if ( ! empty($tool['excerpt']) ) : ?><p><?php echo esc_html($tool['excerpt']); ?></p><?php endif; ?>
                                     <?php if ( $status['installed'] ) : ?>
-                                        <?php if ( $status['active'] ) : ?>
-                                            <span style="font-size:11px; color:#646970;"><?php esc_html_e( 'Active', 'timu' ); ?></span>
-                                        <?php else : ?>
-                                            <a href="<?php echo esc_url($activate_url); ?>" style="font-size:11px; color:#2271b1;"><?php esc_html_e( 'Activate Now &rarr;', 'timu' ); ?></a>
-                                        <?php endif; ?>
-                                    <?php else : ?>
-                                        <a href="#" class="timu-install-btn" data-slug="<?php echo esc_attr($tool['slug']); ?>" data-url="<?php echo esc_url($tool['url']); ?>" style="font-size:11px;"><?php esc_html_e( 'Install Now &rarr;', 'timu' ); ?></a>
-                                    <?php endif; ?>
+                                        <?php if ( $status['active'] ) : ?><span style="font-size:11px; color:#646970;"><?php esc_html_e( 'Active', 'timu' ); ?></span><?php else : ?>
+                                            <a href="<?php echo esc_url($activate_url); ?>" style="font-size:11px; color:#2271b1;"><?php esc_html_e( 'Activate Now &rarr;', 'timu' ); ?></a><?php endif; ?>
+                                    <?php else : ?><a href="#" class="timu-install-btn" data-slug="<?php echo esc_attr($tool['slug']); ?>" data-url="<?php echo esc_url($tool['url']); ?>" style="font-size:11px;"><?php esc_html_e( 'Install Now &rarr;', 'timu' ); ?></a><?php endif; ?>
                                 </div>
                             </div>
                         <?php endforeach; endif; ?>
-                        <p style="text-align:center;">
-                            <a href="https://thisismyurl.com" style="font-size:10px; color:#999;" target="_blank"><?php esc_html_e( 'See More', 'timu' ); ?></a>
-                        </p>
+                        <p style="text-align:center;"><a href="https://thisismyurl.com" style="font-size:10px; color:#999;" target="_blank"><?php esc_html_e( 'See More', 'timu' ); ?></a></p>
                     </div>
                 </div>
             </div>
@@ -362,11 +320,7 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             $path = $slug . '/' . $slug . '.php';
             $inst = isset( $all[$path] );
             $options = get_option( $slug . '_options' );
-            return array( 
-                'installed'  => $inst, 
-                'active'     => ($inst && is_plugin_active( $path )), 
-                'registered' => ! empty( $options['registration_key'] ) 
-            );
+            return array( 'installed' => $inst, 'active' => ($inst && is_plugin_active( $path )), 'registered' => ! empty( $options['registration_key'] ) );
         }
 
         private function fetch_other_tools() {
@@ -380,38 +334,21 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             $data = json_decode( wp_remote_retrieve_body( $res ), true );
             if ( ! is_array($data) ) return array();
             
-            $tools = array_values( array_filter($data, function($i) { 
-                return is_array($i) && isset($i['slug']) && $i['slug'] !== $this->plugin_slug; 
-            }) );
-            
+            $tools = array_values( array_filter($data, function($i) { return is_array($i) && isset($i['slug']) && $i['slug'] !== $this->plugin_slug; }) );
             set_transient( 'timu_tools_cache', $tools, 12 * HOUR_IN_SECONDS );
             return $tools;
         }
 
         protected function is_licensed() {
             $key = $this->get_plugin_option( 'registration_key', '' );
-            if ( empty( $key ) ) { 
-                $this->license_message = __( 'Key missing.', 'timu' ); 
-                return false; 
-            }
+            if ( empty( $key ) ) { $this->license_message = __( 'Key missing.', 'timu' ); return false; }
             
             $cached = get_transient( $this->plugin_slug . '_license_status' );
-            if ( false !== $cached ) { 
-                $this->license_message = get_transient( $this->plugin_slug . '_license_msg' ); 
-                return ($cached === 'valid'); 
-            }
+            if ( false !== $cached ) { $this->license_message = get_transient( $this->plugin_slug . '_license_msg' ); return ($cached === 'valid'); }
             
-            $url = add_query_arg( array(
-                'registration_key' => $key, 
-                'site_url'         => home_url(), 
-                'plugin_slug'      => $this->plugin_slug 
-            ), 'https://thisismyurl.com/wp-json/license-manager/v1/check/' );
-            
+            $url = add_query_arg( array( 'registration_key' => $key, 'site_url' => home_url(), 'plugin_slug' => $this->plugin_slug ), 'https://thisismyurl.com/wp-json/license-manager/v1/check/' );
             $res = wp_remote_get( $url, array( 'timeout' => 15 ) );
-            if ( is_wp_error( $res ) ) { 
-                $this->license_message = __( 'Server error.', 'timu' ); 
-                return false; 
-            }
+            if ( is_wp_error( $res ) ) { $this->license_message = __( 'Server error.', 'timu' ); return false; }
             
             $data = json_decode( wp_remote_retrieve_body( $res ), true );
             $is_valid = ( isset( $data['status'] ) && $data['status'] === 'valid' );
@@ -421,6 +358,18 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             set_transient( $this->plugin_slug . '_license_msg', $this->license_message, DAY_IN_SECONDS );
             return $is_valid;
         }
+
+        protected function render_core_footer() {
+            ?>
+            <div class="clear"></div>
+            <div class="timu-footer-links" style="margin-top: 50px; border-top: 1px solid #ddd; padding-top: 20px; color: #999; font-size: 11px;">
+                &copy; <?php echo esc_html( date('Y') ); ?> <a href="https://thisismyurl.com/" target="_blank" style="color: #999;">thisismyurl.com</a>
+            </div>
+            <?php
+        }
+
+
+
 
         protected function render_core_footer() {
             ?>
