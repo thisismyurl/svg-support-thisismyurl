@@ -1,21 +1,25 @@
 <?php
 /**
- * Author:      Christopher Ross
- * Author URI:  https://thisismyurl.com/
- * Plugin Name: SVG Support by thisismyurl.com
- * Plugin URI:  https://thisismyurl.com/thisismyurl-svg-support/
- * Donate link: https://thisismyurl.com/donate/
- * Description: Safely enable SVG uploads and management in the WordPress Media Library utilizing the TIMU Core Library.
- * Version:     1.260101
- * Requires at least: 5.3
- * Requires PHP: 7.4
- * Tags: svg, uploads, media library
- * Update URI: https://github.com/thisismyurl/thisismyurl-svg-support
- * GitHub Plugin URI: https://github.com/thisismyurl/thisismyurl-svg-support
- * Primary Branch: main
- * Text Domain: thisismyurl-svg-support
- * License:     GPL2
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Author:              Christopher Ross
+ * Author URI:          https://thisismyurl.com/?source=thisismyurl-svg-support
+ * Plugin Name:         SVG Support by thisismyurl.com
+ * Plugin URI:          https://thisismyurl.com/thisismyurl-svg-support/?source=thisismyurl-svg-support
+ * Donate link:         https://thisismyurl.com/donate/?source=thisismyurl-svg-support
+ * 
+ * Description:         Safely enable SVG uploads and management in the WordPress Media Library.
+ * Tags:                svg, uploads, media library
+ * 
+ * Version:             1.260101
+ * Requires at least:   5.3
+ * Requires PHP:        7.7.0
+ * 
+ * Update URI:          https://github.com/thisismyurl/thisismyurl-svg-support
+ * GitHub Plugin URI:   https://github.com/thisismyurl/thisismyurl-svg-support
+ * Primary Branch:      main
+ * Text Domain:         thisismyurl-svg-support
+ * 
+ * License:             GPL2
+ * License URI:         https://www.gnu.org/licenses/gpl-2.0.html
  * 
  * 
  * @package TIMU_SVG_Support
@@ -40,6 +44,7 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 
     /**
      * Constructor: Initializes Core and SVG specific hooks.
+     * Passes 'tools.php' as the 5th argument to determine admin routing.
      */
     public function __construct() {
         parent::__construct( 
@@ -47,23 +52,21 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
             plugin_dir_url( __FILE__ ), 
             'timu_svg_settings_group', 
             '', 
-            'thisismyurl-svg-support' 
+            'tools.php' // New: Routes the Core action links to Tools
         );
 
         add_filter( 'upload_mimes', array( $this, 'add_svg_mime_types' ) );
         add_action( 'admin_head',   array( $this, 'fix_svg_media_library_display' ) );
         add_action( 'admin_menu',   array( $this, 'add_admin_menu' ) );
 
-        // Hook to set defaults upon activation
         register_activation_hook( __FILE__, array( $this, 'activate_plugin_defaults' ) );
     }
 
     /**
      * Activate Plugin Defaults:
-     * Sets 'enabled' to 1 by default upon activation.
+     * Uses namespaced Core option pattern.
      */
     public function activate_plugin_defaults() {
-        // Use the namespaced option key derived from the plugin slug
         $option_name = $this->plugin_slug . '_options';
         if ( false === get_option( $option_name ) ) {
             update_option( $option_name, array( 'enabled' => 1 ) );
@@ -72,9 +75,9 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 
     /**
      * Filters allowed mime types to include SVG.
+     * Uses Core helper get_plugin_option() for cleaner code.
      */
     public function add_svg_mime_types( $mimes ) {
-        // Retrieve the option using the core helper
         if ( 1 == $this->get_plugin_option( 'enabled', 1 ) ) {
             $mimes['svg']  = 'image/svg+xml';
             $mimes['svgz'] = 'image/svg+xml';
@@ -96,6 +99,7 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 
     /**
      * Adds the menu page under Tools.
+     * Consistent with $this->menu_parent set in constructor.
      */
     public function add_admin_menu() {
         add_management_page(
@@ -108,14 +112,12 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
     }
 
     /**
-     * Renders the Settings Interface.
+     * Renders the UI utilizing standardized Core components.
      */
     public function render_ui() {
         if ( ! current_user_can( 'manage_options' ) ) return;
 
         $sidebar_extra = '';
-
-        // Default to 1 if the option is not yet set
         $current_val = $this->get_plugin_option( 'enabled', 1 ); 
         ?>
         <div class="wrap timu-admin-wrap">

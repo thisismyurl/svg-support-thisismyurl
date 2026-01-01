@@ -1,7 +1,7 @@
 <?php
 /**
  * TIMU Shared Core Library
- * Version: 1.3.0
+ * Version: 1.260101
  * Author: thisismyurl.com
  */
 
@@ -12,25 +12,43 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
         protected $plugin_url;
         protected $options_group;
         protected $plugin_icon;
+        protected $menu_parent = 'options-general.php';
         protected $license_message = '';
-        public static $version = '1.3.5';
-        
+        public static $version = '1.3.7';
 
-       
-        public function __construct( $slug, $url, $group, $icon = '' ) {
+        public function __construct( $slug, $url, $group, $icon = '', $parent = 'options-general.php' ) {
             $this->plugin_slug   = $slug;
             $this->plugin_url    = $url;
             $this->options_group = $group;
             $this->plugin_icon   = $icon;
+            $this->menu_parent   = $parent;
 
             add_action( 'admin_init', array( $this, 'register_core_settings' ) );
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_core_assets' ) );
-            add_action( 'plugins_loaded', array( $this, 'init_updater' ) );
+            
+            if ( method_exists( $this, 'init_updater' ) ) {
+                add_action( 'plugins_loaded', array( $this, 'init_updater' ) );
+            }
+
             add_filter( "plugin_action_links_" . $this->plugin_slug . '/' . $this->plugin_slug . '.php', array( $this, 'add_plugin_action_links' ) );
             add_action( 'wp_ajax_timu_install_tool', array( $this, 'ajax_install_plugin' ) );
         }
 
+        /**
+         * Initialize WordPress Filesystem API
+         */
+        public function init_fs() {
+            global $wp_filesystem;
+            if ( empty( $wp_filesystem ) ) {
+                require_once ABSPATH . 'wp-admin/includes/file.php';
+                WP_Filesystem();
+            }
+            return $wp_filesystem;
+        }
 
+        /**
+         * MUST BE PUBLIC: Used as a callback for register_setting
+         */
         public function sanitize_core_options( $input ) {
             delete_transient( $this->plugin_slug . '_license_status' );
             delete_transient( $this->plugin_slug . '_license_msg' );
@@ -40,8 +58,9 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             return $input;
         }
 
-        
-
+        /**
+         * MUST BE PUBLIC: Used as a callback for WP_AJAX
+         */
         public function ajax_install_plugin() {
             check_ajax_referer( 'timu_install_nonce', 'nonce' );
             if ( ! current_user_can( 'install_plugins' ) ) {
@@ -54,8 +73,8 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
                 $download_url = rtrim( $download_url, '/' ) . '/archive/refs/heads/main.zip';
             }
 
+            $this->init_fs();
             include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-            include_once ABSPATH . 'wp-admin/includes/file.php';
 
             $upgrader = new Plugin_Upgrader( new Automatic_Upgrader_Skin() );
             $result   = $upgrader->install( $download_url );
@@ -65,6 +84,63 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             }
             wp_send_json_success();
         }
+
+        /**
+         * Render Header with Asset Existence Checks
+         */
+        protected function render_core_header() {
+            $fs = $this->init_fs();
+            $icon_rel = 'assets/icon.png';
+            $icon_path = WP_PLUGIN_DIR . '/' . $this->plugin_slug . '/' . $icon_rel;
+            
+            if ( ! empty( $this->plugin_icon ) ) {
+                $icon_url = $this->plugin_icon;
+            } elseif ( $fs->exists( $icon_path ) ) {
+                $icon_url = $this->plugin_url . $icon_rel;
+            } else {
+                $icon_url = $this->plugin_url . 'core/assets/default-icon.png';
+            }
+
+            $donate_url = 'https://thisismyurl.com/donate/?source=' . urlencode( $this->plugin_slug );
+            ?>
+            <div class="timu-header">
+                <img src="<?php echo esc_url( $icon_url ); ?>" alt="<?php esc_attr_e( 'Plugin Icon', 'timu' ); ?>">
+                <h1>
+                    <?php echo esc_html( get_admin_page_title() ); ?> 
+                    <span class="agency-by">
+                        <?php esc_html_e( 'by', 'timu' ); ?> 
+                        <a href="<?php echo esc_url( $donate_url ); ?>" target="_blank" style="text-decoration: none; color: #888;">thisismyurl.com</a>
+                    </span>
+                </h1>
+            </div>
+            <?php
+        }
+
+        /**
+         * Render Sidebar with Banner Existence Checks
+         */
+        protected function render_core_sidebar( $extra_content = '' ) {
+            $fs = $this->init_fs();
+            $banner_rel = 'assets/banner.png';
+            $banner_path = WP_PLUGIN_DIR . '/' . $this->plugin_slug . '/' . $banner_rel;
+            ?>
+            <div id="postbox-container-1" class="postbox-container timu-marketing-sidebar" style="width: 280px; float: right; margin-left: 20px;">
+                <?php if ( $fs->exists( $banner_path ) ) : ?>
+                    <div class="postbox">
+                        <img src="<?php echo esc_url($this->plugin_url . $banner_rel); ?>" style="width:100%; height:auto; display:block;">
+                        <?php if ( ! empty( $extra_content ) ) : ?>
+                            <div class="inside"><?php echo wp_kses_post( $extra_content ); ?></div>
+                        <?php endif; ?>
+                    </div>
+                <?php elseif ( ! empty( $extra_content ) ) : ?>
+                    <div class="postbox">
+                        <div class="inside"><?php echo wp_kses_post( $extra_content ); ?></div>
+                    </div>
+                <?php endif; ?>
+                </div>
+            <?php
+        }
+
 
         public function init_updater() {
             $updater_path = WP_PLUGIN_DIR . '/' . $this->plugin_slug . '/updater.php';
@@ -81,10 +157,28 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
                 }
             }
         }
+        
+        /**
+         * Centralized Filesystem API Initialization
+         * Provides a safe, standardized way for any plugin to handle files.
+         */
+        protected function init_fs() {
+            global $wp_filesystem;
+            if ( empty( $wp_filesystem ) ) {
+                require_once ABSPATH . 'wp-admin/includes/file.php';
+                WP_Filesystem();
+            }
+            return $wp_filesystem;
+        }
 
+        /**
+         * Standardized Action Links
+         * Uses the $menu_parent property to determine the correct link.
+         */
         public function add_plugin_action_links( $links ) {
             $is_valid = $this->is_licensed();
-            $settings_url = admin_url( 'options-general.php?page=' . $this->plugin_slug );
+            // Automatically detects if the link should go to Settings or Tools
+            $settings_url = admin_url( $this->menu_parent . '?page=' . $this->plugin_slug );
             $action_links[] = '<a href="' . esc_url( $settings_url ) . '">' . __( 'Settings', 'timu' ) . '</a>';
 
             if ( $is_valid ) {
@@ -163,11 +257,23 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
         }
 
         protected function render_core_header() {
-            $icon = ! empty( $this->plugin_icon ) ? $this->plugin_icon : $this->plugin_url . 'assets/icon.png';
+            $fs = $this->init_fs(); // Access the filesystem
+            $icon_rel = 'assets/icon.png';
+            $icon_path = WP_PLUGIN_DIR . '/' . $this->plugin_slug . '/' . $icon_rel;
+            
+            // Check if the icon exists physically; if not, use the provided icon URL or a default
+            if ( ! empty( $this->plugin_icon ) ) {
+                $icon_url = $this->plugin_icon;
+            } elseif ( $fs->exists( $icon_path ) ) {
+                $icon_url = $this->plugin_url . $icon_rel;
+            } else {
+                $icon_url = $this->plugin_url . 'core/assets/default-icon.png';
+            }
+
             $donate_url = 'https://thisismyurl.com/donate/?source=' . urlencode( $this->plugin_slug );
             ?>
             <div class="timu-header">
-                <img src="<?php echo esc_url( $icon ); ?>" alt="<?php esc_attr_e( 'Plugin Icon', 'timu' ); ?>">
+                <img src="<?php echo esc_url( $icon_url ); ?>" alt="<?php esc_attr_e( 'Plugin Icon', 'timu' ); ?>">
                 <h1>
                     <?php echo esc_html( get_admin_page_title() ); ?> 
                     <span class="agency-by">
@@ -180,19 +286,35 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
         }
 
         /**
-         * Render sidebar with Banner and Tools
+         * Render Sidebar with Banner Existence Check
          */
         protected function render_core_sidebar( $extra_content = '' ) {
-            $tools  = $this->fetch_other_tools();
-            $banner = $this->plugin_url . 'assets/banner.png';
+            $fs = $this->init_fs(); // Access the filesystem
+            $tools = $this->fetch_other_tools();
+            
+            $banner_rel = 'assets/banner.png';
+            $banner_path = WP_PLUGIN_DIR . '/' . $this->plugin_slug . '/' . $banner_rel;
+            $banner_url = $this->plugin_url . $banner_rel;
             ?>
             <div id="postbox-container-1" class="postbox-container timu-marketing-sidebar" style="width: 280px; float: right; margin-left: 20px;">
-                <div class="postbox">
-                    <img src="<?php echo esc_url($banner); ?>" style="width:100%; height:auto; display:block;">
-                    <div class="inside">
-                        <?php echo wp_kses_post( $extra_content ); ?>
+                
+                <?php if ( $fs->exists( $banner_path ) ) : ?>
+                    <div class="postbox">
+                        <img src="<?php echo esc_url($banner_url); ?>" style="width:100%; height:auto; display:block;">
+                        <?php if ( ! empty( $extra_content ) ) : ?>
+                            <div class="inside">
+                                <?php echo wp_kses_post( $extra_content ); ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
-                </div>
+                <?php elseif ( ! empty( $extra_content ) ) : ?>
+                    <div class="postbox">
+                        <div class="inside">
+                            <?php echo wp_kses_post( $extra_content ); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
                 <div class="postbox">
                     <h2 class="hndle"><span><?php esc_html_e( 'Other Tools', 'timu' ); ?></span></h2>
                     <div class="inside">
@@ -204,7 +326,7 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
                                 $activate_url = wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=' . urlencode( $plugin_file ) ), 'activate-plugin_' . $plugin_file );
                             ?>
                             <div class="timu-tool-item">
-                                <img src="<?php echo esc_url($tool['icon'] ?: $this->plugin_url . 'assets/icon.png'); ?>" alt="<?php echo esc_attr($tool['name']); ?>">
+                                <img src="<?php echo esc_url($tool['icon'] ?: $this->plugin_url . 'core/assets/default-icon.png'); ?>" alt="<?php echo esc_attr($tool['name']); ?>">
                                 <div>
                                     <h4 style="margin-bottom:2px;"><?php echo esc_html($tool['name']); ?></h4>
                                     <?php if ( ! empty($tool['excerpt']) ) : ?>
@@ -231,6 +353,8 @@ if ( ! class_exists( 'TIMU_Core_v1' ) ) {
             </div>
             <?php
         }
+
+        
 
         protected function get_plugin_status( $slug ) {
             if ( ! function_exists( 'get_plugins' ) ) require_once ABSPATH . 'wp-admin/includes/plugin.php';
