@@ -8,7 +8,7 @@
  * Donate link:         https://thisismyurl.com/donate/?source=thisismyurl-svg-support
  * 
  * Description:         Safely enable SVG uploads with deep XML/XSS sanitization and centralized settings.
- * Version:             1.260101
+ * Version: 1.260102
  * Requires PHP:        7.4
  * Text Domain:         thisismyurl-svg-support
  * 
