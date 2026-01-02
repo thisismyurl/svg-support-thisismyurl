@@ -61,16 +61,16 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 
         // Build options dynamically
         $format_options = array(
-            'asis'     => __( 'Upload As-Is (Unsafe .svg)', 'thisismyurl-svg-support' ),
-            'sanitize' => __( 'Sanitize XML (Safe .svg)', 'thisismyurl-svg-support' ),
+            'asis'     => __( 'Upload a unsafe .svg', 'thisismyurl-svg-support' ),
+            'sanitize' => __( 'Sanitize XML for safe .svg', 'thisismyurl-svg-support' ),
         );
 
         if ( $webp_active ) {
-            $format_options['webp'] = __( 'Convert to .webp', 'thisismyurl-svg-support' );
+            $format_options['webp'] = __( 'Convert to .webp files.', 'thisismyurl-svg-support' );
         }
 
         if ( $avif_active ) {
-            $format_options['avif'] = __( 'Convert to .avif', 'thisismyurl-svg-support' );
+            $format_options['avif'] = __( 'Convert to .avif files.', 'thisismyurl-svg-support' );
         }
 
         $blueprint = array(
@@ -92,7 +92,7 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
                         'options'   => $format_options,
                         'default'   => 'sanitize',
                         'desc'      => ( !$webp_active || !$avif_active ) 
-                                    ? __( 'Install WebP or AVIF Support plugins to enable conversion formats.', 'thisismyurl-svg-support' ) 
+                                    ? __( 'Install  <a href="https://thisismyurl.com/thisismyurl-webp-support/">WebP Support</a> or  <a href="https://thisismyurl.com/thisismyurl-avif-support/">AVIF Support</a> plugins to enable the formats.', 'thisismyurl-svg-support' ) 
                                     : __( 'Choose how to handle .svg files upon upload.', 'thisismyurl-svg-support' )
                     ),
                     'webp_quality' => array(
