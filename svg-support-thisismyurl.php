@@ -9,7 +9,7 @@
  * Description:         Safely enable SVG uploads and convert existing images to AVIF format.
  * Tags:                svg, uploads, media library, optimization
  * 
- * Version:             1.26010212
+ * Version:             1.26010216
  * Requires at least:   5.3
  * Requires PHP:        7.4
  * 
@@ -26,12 +26,18 @@
  * 
  */
 
+
+
 /**
  * Security: Prevent direct file access to prevent path traversal or unauthorized execution.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+
+
+
 
 /**
  * Version-aware Core Loader
@@ -108,6 +114,8 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 		/** @var bool $avif_active Dependency check for sibling AVIF plugin. */
 		$avif_active = class_exists( 'TIMU_AVIF_Support' );
 
+		$this->is_licensed();
+
 		/**
 		 * Dynamically build the radio options based on the presence of siblings.
 		 */
@@ -169,12 +177,24 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 							'value' => 'avif'           // Must match the value 'webp' in the radio option
 						)
 					),
+					'hr'  => array(
+						'type'    	=> 'hr'
+					),
+					'license_key'  => array(
+						'type'    => 'license',
+						'default' => '',
+						'label'   => __( 'License Key', 'webp-support-thisismyurl' ),
+						'desc'      => ( $this->license_message )
+					),
 				),
 			),
 		);
 
 		$this->init_settings_generator( $blueprint );
 	}
+
+
+	
 
 	/**
 	 * Default Option Initialization

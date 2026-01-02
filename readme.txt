@@ -7,7 +7,7 @@ Support Link: https://thisismyurl.com/contact/
 Tags: svg, media, uploader, image, permissions, timu-core
 Requires at least: 5.3
 Tested up to: 6.9
-Stable tag: 1.26010212
+Stable tag: 1.26010216
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 GitHub Plugin URI: https://github.com/thisismyurl/thisismyurl-svg-support/
@@ -52,6 +52,300 @@ It is a shared library used across our plugins to provide a consistent UI, unifi
 1. The modernized SVG Configuration dashboard featuring the TIMU Switch toggle.
 
 == Changelog ==
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\core
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-ajax.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\assets\shared-admin.js
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\core
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010216 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010216 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010215 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\core
+
+= 1.26010215 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010215 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\core
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
+
+= 1.26010215 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010215 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\core
+
+= 1.26010215 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010215 =
+* Core hierarchy updated via svg-support-thisismyurl\core\folderico-zuIiSu.ico
+
+= 1.26010215 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
+
+= 1.26010214 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core\class-timu-vault.php
+
+= 1.26010214 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core
+
+= 1.26010214 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core\assets\shared-bulk.js
+
+= 1.26010214 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
+
+= 1.26010214 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core\assets\shared-admin.css
+
+= 1.26010214 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core\assets
+
+= 1.26010214 =
+* Core hierarchy updated via Initial Launch
+
+= 1.26010214 =
+* Core hierarchy updated via svg-support-thisismyurl\core
+
+= 1.26010214 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
+
+= 1.26010213 =
+* Core hierarchy updated via core\assets\shared-admin.js
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core\assets
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core\folderico-zuIiSu.ico
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core\2682333820516292531891922458163187249407.ico
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\readme.txt
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-admin.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core\folderico-zuIiSu.ico
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\readme.txt
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-core.php
+
+= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
+
+= 1.26010213 =
+* Core hierarchy updated via core\class-timu-ajax.php
+
+= 1.26010213 =
+* Core hierarchy updated via Initial Launch
+
+= 1.26010213 =
+* Core hierarchy updated via Initial Script Launch
 
 = 1.26010212 =
 * TIMU_Core updated to version 1.26010212
