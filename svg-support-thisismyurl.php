@@ -9,7 +9,7 @@
  * Description:         Safely enable SVG uploads and convert existing images to AVIF format.
  * Tags:                svg, uploads, media library, optimization
  * 
- * Version:             1.26010216
+ * Version:             1.26010217
  * Requires at least:   5.3
  * Requires PHP:        7.4
  * 
@@ -138,8 +138,8 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 				'fields' => array(
 					'enabled'       => array(
 						'type'      => 'switch',
-						'label'     => __( 'Enable SVG Uploads', 'svg-support-thisismyurl' ),
-						'desc'      => __( 'Allows .svg files in the Media Library.', 'svg-support-thisismyurl' ),
+						'label'     => __( 'Enable SVG Support', 'svg-support-thisismyurl' ),
+						'desc'      => __( 'Allows .svg files to be uploaded and processed by this plugin.', 'svg-support-thisismyurl' ),
 						'is_parent' => true,
 						'default'   => 1,
 					),
