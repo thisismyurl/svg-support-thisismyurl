@@ -1,15 +1,29 @@
 <?php
 /**
- * TIMU SVG Support Plugin
- *
- * This plugin facilitates the secure handling of Scalable Vector Graphics (SVG) within
- * the WordPress Media Library. It provides dual-layer protection via XML sanitization
- * and optional rasterization into WebP or AVIF formats through the TIMU Shared Core.
- *
- * @package    TIMU_SVG_Support
- * @author     Christopher Ross <https://thisismyurl.com/>
- * @version    1.260102
- * @license    GPL-2.0+
+ * Author:              Christopher Ross
+ * Author URI:          https://thisismyurl.com/?source=svg-support-thisismyurl
+ * Plugin Name:         SVG Support by thisismyurl.com
+ * Plugin URI:          https://thisismyurl.com/svg-support-thisismyurl/?source=svg-support-thisismyurl
+ * Donate link:         https://thisismyurl.com/donate/?source=svg-support-thisismyurl
+ * 
+ * Description:         Safely enable SVG uploads and convert existing images to AVIF format.
+ * Tags:                svg, uploads, media library, optimization
+ * 
+ * Version:             1.260101
+ * Requires at least:   5.3
+ * Requires PHP:        7.4
+ * 
+ * Update URI:          https://github.com/thisismyurl/svg-support-thisismyurl
+ * GitHub Plugin URI:   https://github.com/thisismyurl/svg-support-thisismyurl
+ * Primary Branch:      main
+ * Text Domain:         svg-support-thisismyurl
+ * 
+ * License:             GPL2
+ * License URI:         https://www.gnu.org/licenses/gpl-2.0.html
+ * 
+ * @package TIMU_AVIF_Support
+ * 
+ * 
  */
 
 /**
@@ -78,6 +92,8 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 		 * Activation: Register defaults only once upon plugin activation.
 		 */
 		register_activation_hook( __FILE__, array( $this, 'activate_plugin_defaults' ) );
+
+		add_action( 'timu_sidebar_under_banner', array( $this, 'render_default_sidebar_actions' ) );
 	}
 
 	/**
@@ -133,16 +149,20 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 					'webp_quality'  => array(
 						'type'         => 'number',
 						'label'        => __( 'WebP Quality', 'svg-support-thisismyurl' ),
-						'parent'       => 'target_format',
-						'parent_value' => 'webp',
 						'default'      => 80,
+						'show_if' => array(
+							'field' => 'target_format', // Must match the ID of your radio buttons
+							'value' => 'webp'           // Must match the value 'webp' in the radio option
+						)
 					),
 					'avif_quality'  => array(
 						'type'         => 'number',
 						'label'        => __( 'AVIF Quality', 'svg-support-thisismyurl' ),
-						'parent'       => 'target_format',
-						'parent_value' => 'avif',
 						'default'      => 60,
+						'show_if' => array(
+							'field' => 'target_format', // Must match the ID of your radio buttons
+							'value' => 'avif'           // Must match the value 'webp' in the radio option
+						)
 					),
 				),
 			),
@@ -180,6 +200,20 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 			array( $this, 'render_settings_page' )
 		);
 	}
+
+
+	/**
+	 * Injects WebP-specific buttons into the Core sidebar.
+	 */
+	public function add_bulk_action_buttons( $current_slug ) {
+		// Only show these buttons on the WebP settings page.
+		if ( $current_slug !== $this->plugin_slug ) {
+			return;
+		}
+
+	}
+
+
 
 	/**
 	 * Expand MIME Support
