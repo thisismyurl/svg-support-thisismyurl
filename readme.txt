@@ -7,7 +7,7 @@ Support Link: https://thisismyurl.com/contact/
 Tags: svg, media, uploader, image, permissions, timu-core
 Requires at least: 5.3
 Tested up to: 6.9
-Stable tag: 1.260101
+Stable tag: 1.260102
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 GitHub Plugin URI: https://github.com/thisismyurl/thisismyurl-svg-support/
@@ -52,6 +52,9 @@ It is a shared library used across our plugins to provide a consistent UI, unifi
 1. The modernized SVG Configuration dashboard featuring the TIMU Switch toggle.
 
 == Changelog ==
+n
+= 1.260102 =
+* Updated core library to version 1.260102
 n
 = 1.260101 =
 * Updated core library to version 1.260101
