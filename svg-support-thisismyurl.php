@@ -50,7 +50,7 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 	 */
 	public function __construct() {
 		parent::__construct(
-			'thisismyurl-svg-support',      // Unique plugin slug.
+			'svg-support-thisismyurl',      // Unique plugin slug.
 			plugin_dir_url( __FILE__ ),       // Base URL for enqueuing assets.
 			'timu_svg_settings_group',        // Settings API group name.
 			'',                               // Custom icon URL (null for default).
@@ -96,50 +96,50 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 		 * Dynamically build the radio options based on the presence of siblings.
 		 */
 		$format_options = array(
-			'asis'     => __( 'Upload as unsafe .svg', 'thisismyurl-svg-support' ),
-			'sanitize' => __( 'Sanitize XML for safe .svg', 'thisismyurl-svg-support' ),
+			'asis'     => __( 'Upload as unsafe .svg', 'svg-support-thisismyurl' ),
+			'sanitize' => __( 'Sanitize XML for safe .svg', 'svg-support-thisismyurl' ),
 		);
 
 		if ( $webp_active ) {
-			$format_options['webp'] = __( 'Convert to .webp file format.', 'thisismyurl-svg-support' );
+			$format_options['webp'] = __( 'Convert to .webp file format.', 'svg-support-thisismyurl' );
 		}
 
 		if ( $avif_active ) {
-			$format_options['avif'] = __( 'Convert to .avif file format.', 'thisismyurl-svg-support' );
+			$format_options['avif'] = __( 'Convert to .avif file format.', 'svg-support-thisismyurl' );
 		}
 
 		$blueprint = array(
 			'config' => array(
-				'title'  => __( 'SVG Configuration', 'thisismyurl-svg-support' ),
+				'title'  => __( 'SVG Configuration', 'svg-support-thisismyurl' ),
 				'fields' => array(
 					'enabled'       => array(
 						'type'      => 'switch',
-						'label'     => __( 'Enable SVG Uploads', 'thisismyurl-svg-support' ),
-						'desc'      => __( 'Allows .svg files in the Media Library.', 'thisismyurl-svg-support' ),
+						'label'     => __( 'Enable SVG Uploads', 'svg-support-thisismyurl' ),
+						'desc'      => __( 'Allows .svg files in the Media Library.', 'svg-support-thisismyurl' ),
 						'is_parent' => true,
 						'default'   => 1,
 					),
 					'target_format' => array(
 						'type'      => 'radio',
-						'label'     => __( 'SVG Handling Mode', 'thisismyurl-svg-support' ),
+						'label'     => __( 'SVG Handling Mode', 'svg-support-thisismyurl' ),
 						'parent'    => 'enabled',
 						'is_parent' => true,
 						'options'   => $format_options,
 						'default'   => 'sanitize',
 						'desc'      => ( ! $webp_active || ! $avif_active )
-									? __( 'Install <a href="https://thisismyurl.com/thisismyurl-webp-support/">WebP</a> or <a href="https://thisismyurl.com/thisismyurl-avif-support/">AVIF</a> plugins for more options.', 'thisismyurl-svg-support' )
-									: __( 'Choose how to process .svg files upon upload.', 'thisismyurl-svg-support' ),
+									? __( 'Install <a href="https://thisismyurl.com/thisismyurl-webp-support/">WebP</a> or <a href="https://thisismyurl.com/thisismyurl-avif-support/">AVIF</a> plugins for more options.', 'svg-support-thisismyurl' )
+									: __( 'Choose how to process .svg files upon upload.', 'svg-support-thisismyurl' ),
 					),
 					'webp_quality'  => array(
 						'type'         => 'number',
-						'label'        => __( 'WebP Quality', 'thisismyurl-svg-support' ),
+						'label'        => __( 'WebP Quality', 'svg-support-thisismyurl' ),
 						'parent'       => 'target_format',
 						'parent_value' => 'webp',
 						'default'      => 80,
 					),
 					'avif_quality'  => array(
 						'type'         => 'number',
-						'label'        => __( 'AVIF Quality', 'thisismyurl-svg-support' ),
+						'label'        => __( 'AVIF Quality', 'svg-support-thisismyurl' ),
 						'parent'       => 'target_format',
 						'parent_value' => 'avif',
 						'default'      => 60,
@@ -173,8 +173,8 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 	 */
 	public function add_admin_menu() {
 		add_management_page(
-			__( 'SVG Support Settings', 'thisismyurl-svg-support' ),
-			__( 'SVG Support', 'thisismyurl-svg-support' ),
+			__( 'SVG Support Settings', 'svg-support-thisismyurl' ),
+			__( 'SVG Support', 'svg-support-thisismyurl' ),
 			'manage_options',
 			$this->plugin_slug,
 			array( $this, 'render_settings_page' )

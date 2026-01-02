@@ -13,7 +13,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  * Determine the plugin slug.
  * The core uses this slug to namespace all database entries.
  */
-$plugin_slug = 'thisismyurl-svg-support';
+$plugin_slug = 'svg-support-thisismyurl';
 
 // 1. Delete the primary plugin options 
 // These include the 'enabled' toggle and the registration key.
