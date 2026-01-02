@@ -14,9 +14,6 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/**
- * Version-aware Core Loader
- */
 function timu_svg_support_load_core() {
     $core_path = plugin_dir_path( __FILE__ ) . 'core/class-timu-core.php';
     if ( ! class_exists( 'TIMU_Core_v1' ) ) {
@@ -27,10 +24,6 @@ timu_svg_support_load_core();
 
 class TIMU_SVG_Support extends TIMU_Core_v1 {
 
-    /**
-     * Constructor: Initializes Core and SVG specific hooks.
-     * Passes 'tools.php' as the 5th argument to determine admin routing.
-     */
     public function __construct() {
         parent::__construct( 
             'thisismyurl-svg-support', 
