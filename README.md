@@ -37,4 +37,4 @@ The plugin is designed to help you manage and convert your imagery. If you choos
 
 
 ---
-Â© 2026 [thisismyurl](https://thisismyurl.com)
+([char]0x00A9) 2026 [thisismyurl](https://thisismyurl.com)
