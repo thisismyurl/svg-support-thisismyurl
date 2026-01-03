@@ -1,4 +1,4 @@
-=== SVG Support by thisismyurl.com ===
+﻿=== SVG Support by thisismyurl.com ===
 Contributors: thisismyurl
 Author: thisismyurl
 Author URI: https://thisismyurl.com/
