@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Author:              Christopher Ross
  * Author URI:          https://thisismyurl.com/?source=svg-support-thisismyurl
