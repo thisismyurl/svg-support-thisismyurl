@@ -2,452 +2,66 @@
 Contributors: thisismyurl
 Author: thisismyurl
 Author URI: https://thisismyurl.com/
-Donate link: https://thisismyurl.com/donate/
+Donate link: https://thisismyurl.com/svg-support-thisismyurl/#register
 Support Link: https://thisismyurl.com/contact/
 Tags: svg, media, uploader, image, permissions, timu-core
 Requires at least: 5.3
 Tested up to: 6.9
-Stable tag: 1.26010217
+Stable tag: 1.260102
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 GitHub Plugin URI: https://github.com/thisismyurl/thisismyurl-svg-support/
 Primary Branch: main
 
-Safely enable SVG uploads and management in the WordPress Media Library utilizing the modernized TIMU Core Library.
+Bring your professional photography workflow directly into WordPress. Safely upload RAW files and automate their conversion into high-performance, next-gen web formats.
 
 == Description ==
 
-Stop struggling with WordPress's default restrictions on vector graphics. As a designer or developer, you need the flexibility of SVG files for crisp, scalable visuals, but WordPress blocks them by default due to their XML-based nature. SVG Support by thisismyurl.com solves this by safely unlocking SVG uploads so you can focus on building beautiful, responsive sites without technical roadblocks.
+**RAW Support by thisismyurl.com** is the definitive performance utility for photographers who want to bridge the gap between their camera and their website.
 
-The plugin is designed with a **Non-Destructive** architecture, ensuring it is active immediately upon installation while remaining completely clean upon uninstallation.
+Traditionally, WordPress prevents the upload of RAW files because they are too large and complex for the web. This plugin removes those barriers, allowing you to manage your source photography within your Media Library while ensuring your site remains lightning-fast for visitors.
 
-= Key Features =
+### Professional Workflow, Web Performance
+Why waste time manually developing JPEGs for your site? With RAW Support, you can upload your high-fidelity files directly. If you use our **WebP Support** or **AVIF Support** plugins, this tool will automatically "develop" your RAW uploads into ultra-lightweight, next-gen formats upon entry.
 
-* Instant SVG Uploads: Start uploading .svg and .svgz files immediately upon activation with zero complex configuration required.
-* Perfect Media Library Previews: No more broken icons. The plugin automatically fixes the Media Library grid and list views so your SVG thumbnails render perfectly every time.
-* Simplified Management: Control your media settings through a modernized, intuitive dashboard designed for ease of use.
-* Rock-Solid Stability: Benefit from a version-aware framework that ensures maximum uptime and prevents conflicts with other tools on your site.
-* Direct Access to Support: Integrated plugin registration provides you with a standardized path to professional developer support.
-* Zero Technical Debt: When we say clean, we mean it. Our automated uninstaller purges all database options upon removal, keeping your site lean.
+### Key Benefits & Features:
+* **Universal RAW Support:** Unlocks support for Canon (.cr2, .cr3), Nikon (.nef, .nrw), Sony (.arw), Adobe (.dng), Fujifilm (.raf), and more.
+* **Automated Image Conversion:** Transform massive RAW data into web-ready WebP or AVIF formats instantly.
+* **Preserve Site Speed:** Keep your high-quality visuals without the heavy file sizes that hurt SEO and user experience.
+* **Smart Suite Integration:** Automatically detects sibling plugins to expand your handling and conversion options.
+* **Intuitive Quality Control:** Use precision sliders in the Tools menu to balance perfect clarity with maximum compression.
+
 
 == Installation ==
 
-1. Upload the `thisismyurl-svg-support` folder to the `/wp-content/plugins/` directory.
+1. Upload the `raw-support-thisismyurl` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. (Optional) Visit 'Tools > SVG Support' to manage your settings.
+3. Navigate to **Tools > RAW Support** to choose your handling mode.
 
 == Frequently Asked Questions ==
 
-= Is this plugin secure? =
-While this plugin enables the upload of SVG files, it is recommended that only trusted administrators be given upload permissions, as SVGs are XML-based assets.
+= Is this plugin free to use? =
+Yes! The RAW Support plugin is 100% free to download and use. We want to help photographers showcase their best work without technical limitations.
 
-= Will this slow down my site? =
-No. The plugin uses minimal hooks and only runs its CSS "fix" within the administrative dashboard, ensuring zero impact on your front-end performance.
+= Why should I register for support? =
+While the plugin is free, registering your copy provides you with priority technical assistance and automatic updates. This ensures your photography workflow stays compatible with the latest WordPress and camera format updates.
 
-= What is the TIMU Core Library? =
-It is a shared library used across our plugins to provide a consistent UI, unified developer support, and version-safe loading to prevent plugin conflicts.
+= How do I register? =
+Visit [https://thisismyurl.com/raw-support-thisismyurl/#register](https://thisismyurl.com/raw-support-thisismyurl/#register) to sign up. Once you have your key, enter it into the "License Key" field in the plugin settings to unlock professional support.
 
-== Screenshots ==
-
-1. The modernized SVG Configuration dashboard featuring the TIMU Switch toggle.
+= Does this delete my original RAW files? =
+The plugin is designed to help you manage and convert your imagery. If you choose a conversion mode (like WebP), it creates a web-ready version for your site while allowing you to maintain your professional workflow.
 
 == Changelog ==
 
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\core\assets
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010217 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl
-
-= 1.26010217 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\core\class-timu-vault.php
-
-= 1.26010217 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\core\assets\shared-admin.js
-
-= 1.26010217 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010217 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010217 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\core\folderico-zuIiSu.ico
-
-= 1.26010217 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010217 =
+= 1.260102 =
 * Core hierarchy updated via svg-support-thisismyurl\core\class-timu-admin.php
-
-= 1.26010217 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\core\folderico-zuIiSu.ico
-
-= 1.26010217 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010217 =
-* Core hierarchy updated via svg-support-thisismyurl\core\assets
-
-= 1.26010217 =
+* Core hierarchy updated via svg-support-thisismyurl\core\icons\code-active.ico
 * Core hierarchy updated via Initial Launch
-
-= 1.26010216 =
-* Core hierarchy updated via Initial Launch
-
-= 1.26010216 =
-* Core hierarchy updated via Initial Launch
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010216 =
 * Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010216 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010216 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010216 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-ajax.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\assets\shared-admin.js
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010216 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010216 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010216 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010216 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010216 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010216 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010216 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010216 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010215 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010215 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010215 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
-
-= 1.26010215 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010215 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010215 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010215 =
-* Core hierarchy updated via svg-support-thisismyurl\core\folderico-zuIiSu.ico
-
-= 1.26010215 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
-
-= 1.26010214 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core\class-timu-vault.php
-
-= 1.26010214 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010214 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core\assets\shared-bulk.js
-
-= 1.26010214 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
-
-= 1.26010214 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core\assets\shared-admin.css
-
-= 1.26010214 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core\assets
-
-= 1.26010214 =
-* Core hierarchy updated via Initial Launch
-
-= 1.26010214 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010214 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
-
-= 1.26010213 =
-* Core hierarchy updated via core\assets\shared-admin.js
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core\assets
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core\folderico-zuIiSu.ico
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core\2682333820516292531891922458163187249407.ico
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010213 =
+* Core hierarchy updated via svg-support-thisismyurl\core\icons\original icons\code-active.png
+* Core hierarchy updated via core
 * Core hierarchy updated via svg-support-thisismyurl\readme.txt
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-admin.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core\folderico-zuIiSu.ico
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\readme.txt
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-core.php
-
-= 1.26010213 =
-* Core hierarchy updated via svg-support-thisismyurl\core\desktop.ini
-
-= 1.26010213 =
-* Core hierarchy updated via core\class-timu-ajax.php
-
-= 1.26010213 =
-* Core hierarchy updated via Initial Launch
-
-= 1.26010213 =
-* Core hierarchy updated via Initial Script Launch
-
-= 1.26010212 =
-* TIMU_Core updated to version 1.26010212
-
-= 1.26010212 =
-* TIMU_Core updated to version 1.26010212
-
-= 1.26010212 =
-* TIMU_Core updated to version 1.26010212
-
-= 1.26010212 =
-* TIMU_Core updated to version 1.26010212
-n
-= 1.260102 =
-* Updated core library to version 1.260102
-n
-= 1.260102 =
-* Updated core library to version 1.260102
-n
-= 1.260101 =
-* Updated core library to version 1.260101
-n
-= 1.260101 =
-* Updated core library to version 1.260101
 
 = 1.260101 =
 * **Architectural Overhaul:** Now extends the **TIMU Core Library** for standardized settings and UI management.

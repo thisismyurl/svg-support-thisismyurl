@@ -4,12 +4,12 @@
  * Author URI:          https://thisismyurl.com/?source=svg-support-thisismyurl
  * Plugin Name:         SVG Support by thisismyurl.com
  * Plugin URI:          https://thisismyurl.com/svg-support-thisismyurl/?source=svg-support-thisismyurl
- * Donate link:         https://thisismyurl.com/donate/?source=svg-support-thisismyurl
+ * Donate link:         https://thisismyurl.com/svg-support-thisismyurl/#register?source=svg-support-thisismyurl
  * 
  * Description:         Safely enable SVG uploads and convert existing images to AVIF format.
  * Tags:                svg, uploads, media library, optimization
  * 
- * Version:             1.26010217
+ * Version: 1.260102
  * Requires at least:   5.3
  * Requires PHP:        7.4
  * 
@@ -25,20 +25,12 @@
  * 
  * 
  */
-
-
-
 /**
  * Security: Prevent direct file access to prevent path traversal or unauthorized execution.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-
-
-
-
 /**
  * Version-aware Core Loader
  *
@@ -191,8 +183,6 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 
 		$this->init_settings_generator( $blueprint );
 	}
-
-
 	
 
 	/**
@@ -224,8 +214,6 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 			array( $this, 'render_settings_page' )
 		);
 	}
-
-
 	/**
 	 * Injects WebP-specific buttons into the Core sidebar.
 	 */
@@ -236,9 +224,6 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 		}
 
 	}
-
-
-
 	/**
 	 * Expand MIME Support
 	 *
@@ -254,8 +239,6 @@ class TIMU_SVG_Support extends TIMU_Core_v1 {
 		}
 		return $mimes;
 	}
-
-
 }
 
 /**
