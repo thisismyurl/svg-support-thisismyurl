@@ -9,7 +9,7 @@
  * Description:         Safely enable SVG uploads and convert existing images to AVIF format.
  * Tags:                svg, uploads, media library, optimization
  * 
- * Version: 1.260102
+ * Version: 1.26010222
  * Requires at least:   5.3
  * Requires PHP:        7.4
  * 

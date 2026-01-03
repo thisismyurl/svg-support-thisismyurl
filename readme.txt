@@ -7,7 +7,7 @@ Support Link: https://thisismyurl.com/contact/
 Tags: svg, media, uploader, image, permissions, timu-core
 Requires at least: 5.3
 Tested up to: 6.9
-Stable tag: 1.260102
+Stable tag: 1.26010222
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 GitHub Plugin URI: https://github.com/thisismyurl/thisismyurl-svg-support/
@@ -54,13 +54,7 @@ The plugin is designed to help you manage and convert your imagery. If you choos
 
 == Changelog ==
 
-= 1.260102 =
-* Core hierarchy updated via svg-support-thisismyurl\core\class-timu-admin.php
-* Core hierarchy updated via svg-support-thisismyurl\core\icons\code-active.ico
-* Core hierarchy updated via Initial Launch
-* Core hierarchy updated via svg-support-thisismyurl\svg-support-thisismyurl.php
-* Core hierarchy updated via svg-support-thisismyurl\core\icons\original icons\code-active.png
-* Core hierarchy updated via core
+= 1.26010222 =
 * Core hierarchy updated via svg-support-thisismyurl\readme.txt
 
 = 1.260101 =
