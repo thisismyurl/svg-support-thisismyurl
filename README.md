@@ -34,7 +34,7 @@ Visit [https://thisismyurl.com/raw-support-thisismyurl/#register](https://thisis
 The plugin is designed to help you manage and convert your imagery. If you choose a conversion mode (like WebP), it creates a web-ready version for your site while allowing you to maintain your professional workflow.
 
 ## 🗺️ Roadmap & Activity
-
+https://github.com/thisismyurl/svg-support-thisismyurl/issues/2 https://github.com/thisismyurl/svg-support-thisismyurl/issues/3 https://github.com/thisismyurl/svg-support-thisismyurl/issues/4 https://github.com/thisismyurl/svg-support-thisismyurl/issues/5 https://github.com/thisismyurl/svg-support-thisismyurl/issues/6 https://github.com/thisismyurl/svg-support-thisismyurl/issues/7 https://github.com/thisismyurl/svg-support-thisismyurl/issues/8 https://github.com/thisismyurl/svg-support-thisismyurl/issues/9 
 
 ---
 ([char]0x00A9) 2026 [thisismyurl](https://thisismyurl.com)

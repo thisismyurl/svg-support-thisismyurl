@@ -1,4 +1,4 @@
-=== SVG Support by thisismyurl.com ===
+﻿=== SVG Support by thisismyurl.com ===
 Contributors: thisismyurl
 Author: thisismyurl
 Author URI: https://thisismyurl.com/
@@ -73,3 +73,17 @@ The plugin is designed to help you manage and convert your imagery. If you choos
 
 = 1.260101 =
 Major architectural update integrating the TIMU Core Library for enhanced stability and a modernized administrative experience. Recommended for all users.
+
+
+
+== Roadmap ==
+* [Issue] Setting to Remove EXIF Thumbnail Data
+* [Issue] Setting to Remove EXIF Location Data
+* [Issue] Setting to Remove EXIF Privacy Data
+* [Issue] Setting to Remove EXIF Editing History
+* [Issue] Setting to Add Descriptive Metadata
+* [Issue] Setting to Add Copyright and Ownership
+* [Issue] Setting to Add Source URL
+* [Issue] Setting to Add Modification Date
+
+==
