@@ -2,7 +2,7 @@
 /**
  * Author:              Christopher Ross
  * Author URI:          https://thisismyurl.com/?source=svg-support-thisismyurl
- * Plugin Name:         SVG Support by thisismyurl.com
+ * Plugin Name:         SVG Support by thisismyurl
  * Plugin URI:          https://thisismyurl.com/svg-support-thisismyurl/?source=svg-support-thisismyurl
  * Donate link:         https://thisismyurl.com/svg-support-thisismyurl/#register?source=svg-support-thisismyurl
  * 
