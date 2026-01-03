@@ -2,7 +2,7 @@
 
 # SVG Support by thisismyurl.com
 ![Version](https://img.shields.io/badge/version-1.26010222-blue.svg)
-🔗 **[Plugin Homepage](https://thisismyurl.com/svg-support-thisismyurl/#register)**
+🔗 **[Register](https://thisismyurl.com/svg-support-thisismyurl/#register)**
 
 **RAW Support by thisismyurl.com** is the definitive performance utility for photographers who want to bridge the gap between their camera and their website.
 
@@ -24,16 +24,13 @@ Why waste time manually developing JPEGs for your site? With RAW Support, you ca
 3. Navigate to **Tools > RAW Support** to choose your handling mode.
 
 ## ❓ FAQ
-= Is this plugin free to use? =
+### Is this plugin free to use?
 Yes! The RAW Support plugin is 100% free to download and use. We want to help photographers showcase their best work without technical limitations.
-
-= Why should I register for support? =
+### Why should I register for support?
 While the plugin is free, registering your copy provides you with priority technical assistance and automatic updates. This ensures your photography workflow stays compatible with the latest WordPress and camera format updates.
-
-= How do I register? =
+### How do I register?
 Visit [https://thisismyurl.com/raw-support-thisismyurl/#register](https://thisismyurl.com/raw-support-thisismyurl/#register) to sign up. Once you have your key, enter it into the "License Key" field in the plugin settings to unlock professional support.
-
-= Does this delete my original RAW files? =
+### Does this delete my original RAW files?
 The plugin is designed to help you manage and convert your imagery. If you choose a conversion mode (like WebP), it creates a web-ready version for your site while allowing you to maintain your professional workflow.
 
 ## 🗺️ Roadmap & Activity
